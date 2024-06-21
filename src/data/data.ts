@@ -1,5 +1,5 @@
 import { Edge, Node, Position } from "reactflow";
-import { Agent, Organization, Team } from "./types";
+import { Agent, Organization, Team } from "../types";
 
 const agent: Agent = {
   id: "agent-1",
