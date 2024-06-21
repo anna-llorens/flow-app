@@ -2,10 +2,9 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { Flow  } from './flow';
-import  Flow2 from './flow-her.jsx';
-
-
+import { team1Nodes, team1Edges } from '../data/data';
+import { Flow } from './flow';
+import { initialEdges, initialNodes } from '../data/example-3.js';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -49,17 +48,21 @@ export default function BasicTabs() {
         <Tabs value={value} onChange={handleChange} aria-label="team tabs">
           <Tab label="Team 1" {...a11yProps(0)} />
           <Tab label="Team 2" {...a11yProps(1)} />
-          <Tab label="Add team" {...a11yProps(2)} onClick={() => alert('🚧 Add modal to fill with basic data for a new team')}/>
+          <Tab label="Team 3" {...a11yProps(2)} />
+          <Tab label=" ➕ " {...a11yProps(2)} onClick={() => console.info('🚧 Add modal to fill with basic data for a new team')}/>
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-       <Flow/>
+       <Flow initialNodes={team1Nodes} initialEdges={team1Edges} fitView/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-      <Flow2/>
+      <Flow initialNodes={team1Nodes} initialEdges={team1Edges} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-      🚧
+      <Flow initialEdges={initialEdges} initialNodes={initialNodes} fitView/>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={3}>
+ 
       </CustomTabPanel>
     </Box>
   );

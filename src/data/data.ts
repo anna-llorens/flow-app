@@ -21,7 +21,7 @@ export const BriffOrganization: Organization = {
   teams: [BriffTeam],
 };
 
-export const nodes: Node[] = [
+export const team1Nodes: Node[] = [
   {
     id: "team-id-org",
     position: { x: 250, y: 43.0167 },
@@ -88,7 +88,7 @@ export const nodes: Node[] = [
     data: { label: "Asset name and #" },
   },
 ];
-export const initialEdges: Edge[] = [
+export const team1Edges: Edge[] = [
   { id: "e1-2", source: "asset-1-type-1", target: "team-id-org" },
   { id: "e2-3", source: "team-id-org", target: "asset-2-type-3" },
   { id: "e1-4", source: "team-id-org", target: "asset-3-type-3" },
