@@ -17,39 +17,45 @@ import ReactFlow, {
   MiniMap,
 } from "reactflow";
 import "reactflow/dist/style.css";
+import { Label, InputText } from "./flow-nodes";
 
-import { MyCustomNode, TextUpdater } from "./custom-nodes";
-
+// Define node types
 const nodeTypesDefault: NodeTypes = {
   // TODO add more types
-  custom: MyCustomNode,
-  editable: TextUpdater,
+  label: Label,
+  editable: InputText,
 };
 
 type Props = {
+  defaultEdgeOptions?: DefaultEdgeOptions;
+  fitView?: boolean;
+  fitViewOptions?: FitViewOptions;
+  height?: number;
   initialNodes: Node[];
   initialEdges: Edge[];
   nodeTypes?: NodeTypes;
-  fitViewOptions?: FitViewOptions;
-  defaultEdgeOptions?: DefaultEdgeOptions;
-  fitView?: boolean;
-}  
+  showControls?: boolean;
+  showMiniMap?: boolean;
+  width?: number;
+};
 
 export const Flow: React.FC<Props> = ({
+  height = 860,
   initialEdges,
   initialNodes,
   nodeTypes = nodeTypesDefault,
   fitViewOptions,
   defaultEdgeOptions,
   fitView,
+  showControls,
+  showMiniMap,
+  width = 860,
 }) => {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
 
-
   const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-
     [setNodes]
   );
   const onEdgesChange: OnEdgesChange = useCallback(
@@ -62,7 +68,7 @@ export const Flow: React.FC<Props> = ({
   );
 
   return (
-    <div style={{ width: "1200px", height: "800px" }}>
+    <div style={{ width, height }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -74,8 +80,8 @@ export const Flow: React.FC<Props> = ({
         defaultEdgeOptions={defaultEdgeOptions}
         nodeTypes={nodeTypes}
       >
-         <Controls />
-        <MiniMap />
+        {showControls && <Controls />}
+        {showMiniMap && <MiniMap />}
         <Background variant={BackgroundVariant.Lines} gap={12} size={1} />
       </ReactFlow>
     </div>

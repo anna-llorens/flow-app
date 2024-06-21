@@ -1,69 +1,77 @@
-import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import { team1Nodes, team1Edges } from '../data/data';
-import { Flow } from './flow';
-import { initialEdges, initialNodes } from '../data/example-3.js';
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
 
-interface TabPanelProps {
+import { Edge, Node } from "reactflow";
+import { useState } from "react";
+
+type TabPanelProps = {
   children?: React.ReactNode;
   index: number;
   value: number;
-}
+};
+type TabType = {
+  label: string;
+  onClick?: () => void;
+  nodes?: Node[];
+  edges?: Edge[];
+  children?: React.ReactNode;
+};
 
-function CustomTabPanel(props: TabPanelProps) {
+type Props = {
+  tabs: TabType[];
+  children?: React.ReactNode;
+};
+
+const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`teams-tabpanel-${index}`}
+      aria-labelledby={`teams-tab-${index}`}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
-}
+};
 
-function a11yProps(index: number) {
+const a11yProps = (index: number) => {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
-}
+};
 
-export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+export const TabsComponent: React.FC<Props> = ({ tabs, children }) => {
+  const [activeTeam, setActiveTeam] = useState(1);
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+  const handleChange = (_event: React.SyntheticEvent, teamTab: number) =>
+    setActiveTeam(teamTab);
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="team tabs">
-          <Tab label="Team 1" {...a11yProps(0)} />
-          <Tab label="Team 2" {...a11yProps(1)} />
-          <Tab label="Team 3" {...a11yProps(2)} />
-          <Tab label=" ➕ " {...a11yProps(2)} onClick={() => console.info('🚧 Add modal to fill with basic data for a new team')}/>
-        </Tabs>
+    <>
+      <Box sx={{ width: "100%" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={activeTeam}
+            onChange={handleChange}
+            aria-label="team tabs"
+          >
+            {tabs.map((tab, index) => (
+              <Tab key={index} label={tab.label} {...a11yProps(index)} />
+            ))}
+          </Tabs>
+        </Box>
+        {tabs.map((tab, index) => (
+          <TabPanel key={index} value={activeTeam} index={index}>
+            {tab?.children}
+          </TabPanel>
+        ))}
       </Box>
-      <CustomTabPanel value={value} index={0}>
-       <Flow initialNodes={team1Nodes} initialEdges={team1Edges} fitView/>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-      <Flow initialNodes={team1Nodes} initialEdges={team1Edges} />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-      <Flow initialEdges={initialEdges} initialNodes={initialNodes} fitView/>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={3}>
- 
-      </CustomTabPanel>
-    </Box>
+      {children}
+    </>
   );
-}
+};

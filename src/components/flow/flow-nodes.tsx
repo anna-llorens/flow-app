@@ -4,10 +4,10 @@ type NodeData = {
   value: number;
 };
 
-export const MyCustomNode = ({ data }: NodeProps<NodeData>) => (
+export const Label = ({ data }: NodeProps<NodeData>) => (
   <div>A big number: {data.value}</div>
 );
 
-export function TextUpdater({ data }: NodeProps<NodeData>) {
+export function InputText({ data }: NodeProps<NodeData>) {
   return <div>TextUpdater {data.value}</div>;
 }

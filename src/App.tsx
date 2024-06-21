@@ -1,12 +1,10 @@
-import BasicTabs from "./components/tabs";
+import { TeamsPage } from "./pages/teams/teams-page";
 
 export default function App() {
   return (
-    <div style={{ marginLeft: "50px" }}>
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <button>Allocate assets</button>
-      </div>
-      <BasicTabs />
+    <div style={{ marginLeft: "10px" }}>
+   
+      <TeamsPage />
     </div>
   );
 }
