@@ -2,7 +2,10 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { Flow } from './flow';
+import { Flow  } from './flow';
+import  Flow2 from './flow-her.jsx';
+
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -36,27 +39,27 @@ function a11yProps(index: number) {
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs value={value} onChange={handleChange} aria-label="team tabs">
           <Tab label="Team 1" {...a11yProps(0)} />
           <Tab label="Team 2" {...a11yProps(1)} />
-          <Tab label="Team 3" {...a11yProps(2)} />
+          <Tab label="Add team" {...a11yProps(2)} onClick={() => alert('🚧 Add modal to fill with basic data for a new team')}/>
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
        <Flow/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Item Two
+      <Flow2/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Item Three
+      🚧
       </CustomTabPanel>
     </Box>
   );

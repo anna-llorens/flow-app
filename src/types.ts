@@ -1,27 +1,25 @@
-export type AppRole = {
-  superAdmin: boolean;
-  agent: boolean;
-};
-
-export type AgentRole = {
-  admin: boolean;
-  foreman: boolean;
-  fireman: boolean;
-  technical: boolean;
-};
+export type AgentRole =
+  | "foreman"
+  | "firefighter"
+  | "paramedic"
+  | "police"
+  | "rescuer"
+  | "volunteer"
+  | "other";
 
 export type User = {
   id: string;
   name: string;
   email: string;
-  role: AppRole;
+  admin?: boolean;
 };
 
 export type Team = {
   id: string;
   name: string;
   members: Agent[];
-  organization: Organization;
+  organizationId: string;
+  imageUrl?: string;
 };
 
 export type Organization = {
@@ -31,17 +29,11 @@ export type Organization = {
 };
 
 export type Agent = {
-  organization: Organization;
-  agentRoles: AgentRole;
+  roles: AgentRole;
 } & User;
 
-export type Mission = {
-  location: string;
-  date: string;
-  active: boolean;
-};
-
 export type Incident = {
+  active: boolean;
   id: string;
   name: string;
   description: string;
@@ -49,7 +41,6 @@ export type Incident = {
   date: string;
   time: string;
   tags: string[];
-  mission: Mission;
 };
 
 export type Asset = {

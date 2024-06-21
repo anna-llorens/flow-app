@@ -9,15 +9,14 @@ import ReactFlow, {
   Controls,
   MiniMap,
   BackgroundVariant,
-  Node,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
-import { initialEdges, initialNodes } from "../data";
+import { initialEdges, nodes as flow} from "../data";
 
 
 export const Flow = () => {
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
+  const [nodes, , onNodesChange] = useNodesState(flow);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   const onConnect = useCallback(
