@@ -3,8 +3,9 @@ export enum Routes {
   dashboard = "/dashboard",
   // Teams
   teams = "/teams",
-  teamOrg = "/teams/{:id}/org",
-  teamMembers = "/teams/{:id}/members",
+  teamFavorites = "/teams/favorites",
+  teamOrg = "/teams/org",
+  teamMembers = "/teams/members",
   teamsAssets = "/teams/assets",
   teamsAssetDetail = "/teams/assets/detail",
   teamsAssetDetailEdit = "/teams/assets/detail/edit",

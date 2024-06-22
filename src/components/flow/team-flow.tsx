@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { Flow } from "../../components/flow";
+import { Flow } from ".";
 import { team1Edges, teamOrganization } from "../../data/data";
-import { Button } from "../../components/button";
+import { Button } from "../button";
+import { Link as RouterLink } from "react-router-dom";
 
 const FlowWrapper = styled.div`
   margin-top: 16px;
@@ -16,15 +17,12 @@ const defaultFlowProps = {
 };
 
 export const TeamFlow = () => {
-  
-  const onEditClick = () => {
-    console.info("Redirect to the edit team page");
-  };
-
   return (
     <FlowWrapper>
       <div style={{ display: "flex", justifyContent: "end" }}>
-        <Button onClick={onEditClick}>Edit</Button>
+        <Button>
+          <RouterLink to="/teams/edit">Edit</RouterLink>
+        </Button>
       </div>
       <Flow
         initialNodes={teamOrganization}

@@ -1,9 +1,9 @@
 import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 import { Edge, Node } from "reactflow";
 import { useState } from "react";
+import Tab from "@mui/material/Tab";
 
 type TabPanelProps = {
   children?: React.ReactNode;
@@ -15,6 +15,7 @@ type TabType = {
   onClick?: () => void;
   nodes?: Node[];
   edges?: Edge[];
+  route?: string;
   children?: React.ReactNode;
 };
 
@@ -22,6 +23,44 @@ type Props = {
   tabs: TabType[];
   children?: React.ReactNode;
 };
+
+interface LinkTabProps {
+  label?: string;
+  href?: string;
+  selected?: boolean;
+}
+
+function samePageLinkNavigation(
+  event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+) {
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 || // ignore everything but left-click
+    event.metaKey ||
+    event.ctrlKey ||
+    event.altKey ||
+    event.shiftKey
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function LinkTab(props: LinkTabProps) {
+  return (
+    <Tab
+      component="a"
+      onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        // Routing libraries handle this, you can remove the onClick handle when using them.
+        if (samePageLinkNavigation(event)) {
+          event.preventDefault();
+        }
+      }}
+      aria-current={props.selected ? "page" : undefined}
+      {...props}
+    />
+  );
+}
 
 const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
@@ -61,7 +100,12 @@ export const TabsComponent: React.FC<Props> = ({ tabs, children }) => {
             aria-label="team tabs"
           >
             {tabs.map((tab, index) => (
-              <Tab key={index} label={tab.label} {...a11yProps(index)} />
+              <LinkTab
+                key={index}
+                label={tab.label}
+                {...a11yProps(index)}
+                href={tab?.route}
+              />
             ))}
           </Tabs>
         </Box>

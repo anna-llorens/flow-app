@@ -1,9 +1,11 @@
 import "reactflow/dist/style.css";
-import { TabsComponent } from "../../components/tabs";
+
 import { Link } from "@mui/material";
 import styled from "styled-components";
-import { Routes } from "../../Routes";
-import { TeamFlow } from "./team-flow";
+
+import { Outlet } from "react-router-dom";
+import { Routes } from "../routes";
+import { TabsComponent } from "../components/tabs";
 
 const LinksWrapper = styled.section`
   display: flex;
@@ -24,6 +26,7 @@ export const TeamsPage = () => {
         tabs={[
           {
             label: "⭐️ Favorites",
+            route: Routes.teamFavorites,
           },
           {
             label: "Team 1",
@@ -34,8 +37,7 @@ export const TeamsPage = () => {
                   <Separator> / </Separator>
                   <Link href={Routes.teamMembers}>Members</Link>
                 </LinksWrapper>
-                {/* ADD React Router, several tabs */}
-                <TeamFlow />
+                <Outlet />
               </>
             ),
           },
