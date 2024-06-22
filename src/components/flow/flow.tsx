@@ -26,8 +26,12 @@ const nodeTypesDefault: NodeTypes = {
   editable: InputText,
 };
 
-type Props = {
+const proOptions = { hideAttribution: true };
+
+type FlowProps = {
+  background?: BackgroundVariant;
   defaultEdgeOptions?: DefaultEdgeOptions;
+  draggable?: boolean;
   fitView?: boolean;
   fitViewOptions?: FitViewOptions;
   height?: number;
@@ -37,10 +41,12 @@ type Props = {
   showControls?: boolean;
   showMiniMap?: boolean;
   width?: number;
+  zoom?: boolean;
 };
 
-export const Flow: React.FC<Props> = ({
-  height = 860,
+export const Flow: React.FC<FlowProps> = ({
+  background,
+  height = 300,
   initialEdges,
   initialNodes,
   nodeTypes = nodeTypesDefault,
@@ -49,7 +55,9 @@ export const Flow: React.FC<Props> = ({
   fitView,
   showControls,
   showMiniMap,
-  width = 860,
+  zoom = true,
+  draggable = true,
+  width = 800,
 }) => {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
@@ -79,10 +87,18 @@ export const Flow: React.FC<Props> = ({
         fitViewOptions={fitViewOptions}
         defaultEdgeOptions={defaultEdgeOptions}
         nodeTypes={nodeTypes}
+        zoomOnScroll={zoom}
+        zoomOnDoubleClick={zoom}
+        zoomOnPinch={zoom}
+        proOptions={proOptions} // See pricing before using this option
+        panOnDrag={draggable}
+        draggable={draggable}
+        nodesDraggable={draggable}
+        style={{ border: "1px solid #ddd" }}
       >
         {showControls && <Controls />}
         {showMiniMap && <MiniMap />}
-        <Background variant={BackgroundVariant.Lines} gap={12} size={1} />
+        {background && <Background variant={background} gap={12} size={1} />}
       </ReactFlow>
     </div>
   );

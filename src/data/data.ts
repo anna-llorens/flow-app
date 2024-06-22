@@ -21,7 +21,21 @@ export const BriffOrganization: Organization = {
   teams: [BriffTeam],
 };
 
-export const team1Nodes: Node[] = [
+export const teamOrganization: Node[] = [
+  {
+    id: "asset-1-type-1",
+    type: "asset",
+    position: { x: 20, y: 77.6997 },
+    sourcePosition: Position.Right,
+    targetPosition: Position.Left,
+    style: {
+      width: 150,
+      height: 130,
+    },
+    data: {
+      label: "Asset - Type 1 Details",
+    },
+  },
   {
     id: "team-id-org",
     position: { x: 250, y: 43.0167 },
@@ -32,16 +46,6 @@ export const team1Nodes: Node[] = [
       width: 200,
       height: 200,
       backgroundColor: "transparent",
-    },
-  },
-  {
-    id: "asset-1-type-1",
-    position: { x: 20, y: 77.6997 },
-    sourcePosition: Position.Right,
-    targetPosition: Position.Left,
-    data: {
-      label:
-        "Asset - Type 1 - Detail Asset - Type 1 - Detail Asset - Type 1 - Detail Asset - Type 1 - Detail Asset - Type 1 - Detail Asset - Type 1 - Detail ",
     },
   },
   {
