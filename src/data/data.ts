@@ -34,6 +34,7 @@ export const teamOrganization: Node[] = [
     },
     data: {
       label: "Asset - Type 1 Details",
+      name: "Asset Name",
     },
   },
   {

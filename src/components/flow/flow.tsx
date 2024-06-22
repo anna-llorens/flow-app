@@ -17,20 +17,21 @@ import ReactFlow, {
   MiniMap,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { Label, InputText, Resize } from "./flow-nodes";
+import { Label, InputText, Resize } from "./nodes/nodes";
 
 // Define node types
 const nodeTypesDefault: NodeTypes = {
-  // TODO add more types
   label: Label,
   editable: InputText,
   resize: Resize,
 };
 
+// ℹ️ See pricing before enabling this option in prod 
 const proOptions = { hideAttribution: true };
 
 type FlowProps = {
   background?: BackgroundVariant;
+  className?: string;
   defaultEdgeOptions?: DefaultEdgeOptions;
   draggable?: boolean;
   fitView?: boolean;
@@ -41,24 +42,29 @@ type FlowProps = {
   nodeTypes?: NodeTypes;
   showControls?: boolean;
   showMiniMap?: boolean;
+  style?: React.CSSProperties;
   width?: string;
+  withBorder?: boolean;
   zoom?: boolean;
 };
 
 export const Flow: React.FC<FlowProps> = ({
   background,
+  className,
+  draggable = true,
+  defaultEdgeOptions,
+  fitView,
+  fitViewOptions,
   height = 300,
   initialEdges,
   initialNodes,
   nodeTypes = nodeTypesDefault,
-  fitViewOptions,
-  defaultEdgeOptions,
-  fitView,
   showControls,
   showMiniMap,
-  zoom = true,
-  draggable = true,
+  style,
   width = 800,
+  withBorder,
+  zoom = true,
 }) => {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
@@ -77,25 +83,32 @@ export const Flow: React.FC<FlowProps> = ({
   );
 
   return (
-    <div style={{ width, height }}>
+    <div
+      style={{
+        width,
+        height,
+        border: `${withBorder ? "1px solid #ddd" : "none"}`,
+      }}
+    >
       <ReactFlow
-        nodes={nodes}
+        className={className}
+        defaultEdgeOptions={defaultEdgeOptions}
+        draggable={draggable}
         edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
         fitView={fitView}
         fitViewOptions={fitViewOptions}
-        defaultEdgeOptions={defaultEdgeOptions}
+        nodes={nodes}
+        nodesDraggable={draggable}
         nodeTypes={nodeTypes}
-        zoomOnScroll={zoom}
+        onConnect={onConnect}
+        onEdgesChange={onEdgesChange}
+        panOnDrag={draggable}
+        onNodesChange={onNodesChange}
+        proOptions={proOptions}
+        style={style}
         zoomOnDoubleClick={zoom}
         zoomOnPinch={zoom}
-        proOptions={proOptions} // See pricing before using this option
-        panOnDrag={draggable}
-        draggable={draggable}
-        nodesDraggable={draggable}
-        style={{ border: "1px solid #ddd" }}
+        zoomOnScroll={zoom}
       >
         {showControls && <Controls showInteractive />}
         {showMiniMap && <MiniMap />}

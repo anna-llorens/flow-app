@@ -11,6 +11,9 @@ type TeamFlowProps = {
   showControls?: boolean;
   showMiniMap?: boolean;
   background?: BackgroundVariant;
+  withBorder?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
 export const TeamFlow: React.FC<TeamFlowProps> = ({
@@ -21,6 +24,9 @@ export const TeamFlow: React.FC<TeamFlowProps> = ({
   showControls,
   showMiniMap,
   background,
+  withBorder,
+  className,
+  style,
 }) => {
   return (
     <Flow
@@ -34,6 +40,9 @@ export const TeamFlow: React.FC<TeamFlowProps> = ({
       showControls={showControls}
       showMiniMap={showMiniMap}
       background={background}
+      withBorder={withBorder}
+      className={className}
+      style={style}
     />
   );
 };

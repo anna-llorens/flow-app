@@ -1,8 +1,7 @@
 import ReactFlow, { Background, Position } from "reactflow";
 
 import "reactflow/dist/style.css";
-
-import ResizeRotateNode from "../components/flow/edit-flow/resize-and-rotate";
+import ResizeRotateNode from "../../components/flow/nodes/resize-and-rotate";
 
 const nodeTypes = {
   resizeRotate: ResizeRotateNode,

@@ -2,10 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { App } from "./App";
 import { ErrorPage } from "./pages/error-page";
-import { MembersPage } from "./pages/members-page";
 
 import { EditFlowPage } from "./components/flow/edit-flow/edit-flow";
 import { OrgPage } from "./pages/teams/org-page";
+import { MembersPage } from "./pages/teams/members-page";
+
+// TODO - App routes
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -16,8 +19,9 @@ export const router = createBrowserRouter([
         path: "dashboard",
         element: "Dashboard route",
       },
+      // Teams routes
       {
-        path: "teams/members",
+        path: "/teams/members",
         element: <MembersPage />,
       },
       {
@@ -26,7 +30,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/teams/favorites",
-        element: "Favourite route",
+        element: <>Favourite route</>,
       },
       {
         path: "/teams/edit",
@@ -34,7 +38,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "predictions",
-        element: "Predictions route",
+        element: <>Predictions route</>,
       },
     ],
   },

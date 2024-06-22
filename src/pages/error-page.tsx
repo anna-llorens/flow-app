@@ -12,10 +12,10 @@ export const ErrorPage = () => {
   const error = useRouteError() as ErrorType;
   return (
     <ErrorPageWrapper>
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
+      <h1> Oops!</h1>
+
       <p>
-        <i>{error?.statusText || error?.message}</i>
+        <i> Page {error?.statusText || error?.message}</i>
       </p>
     </ErrorPageWrapper>
   );

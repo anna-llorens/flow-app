@@ -73,7 +73,11 @@ const TabPanel = (props: TabPanelProps) => {
       aria-labelledby={`teams-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && (
+        <Box style={{ padding: 0 }} sx={{ p: 3 }}>
+          {children}
+        </Box>
+      )}
     </div>
   );
 };

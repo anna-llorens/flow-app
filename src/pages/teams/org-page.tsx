@@ -16,7 +16,7 @@ export const OrgPage = () => {
       <ActionsMenu>
         <Link to="/teams/edit">Edit</Link>
       </ActionsMenu>
-      <TeamFlow width={WIDTH} height={HEIGHT} />
+      <TeamFlow width={WIDTH} height={HEIGHT} withBorder />
     </div>
   );
 };

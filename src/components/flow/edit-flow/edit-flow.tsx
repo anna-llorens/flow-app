@@ -9,11 +9,13 @@ const Wrapper = styled.div`
   gap: 16px;
 `;
 
+const StyledFlow = styled(TeamFlow)``;
+
 export const EditFlowPage = () => {
   return (
     <Wrapper>
       <SelectorPanel />
-      <TeamFlow
+      <StyledFlow
         width="1000px"
         height="800px"
         zoom
@@ -21,6 +23,7 @@ export const EditFlowPage = () => {
         showControls
         showMiniMap
         background={BackgroundVariant.Cross}
+        withBorder
       />
       <EditFlowControl />
     </Wrapper>
