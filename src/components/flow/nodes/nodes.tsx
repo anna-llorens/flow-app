@@ -5,16 +5,17 @@ type NodeData = {
 };
 
 export const Label = ({ data }: NodeProps<NodeData>) => (
-  <div>A big number: {data.value}</div>
-);
-export const Resize = ({ data }: NodeProps<NodeData>) => (
-  <div>A big number: {data.value}</div>
+  <div>Label: {data.value}</div>
 );
 
-export function InputText({ data }: NodeProps<NodeData>) {
+export const Resize = ({ data }: NodeProps<NodeData>) => (
+  <div>Resizer {data.value}</div>
+);
+
+export const InputText = ({ data }: NodeProps<NodeData>) => {
   return <div>TextUpdater {data.value}</div>;
-}
+};
 
 export const AssetType1 = ({ data }: NodeProps<NodeData>) => (
-  <div>A big number: {data.value}</div>
+  <div>AssetType1: {data.value}</div>
 );

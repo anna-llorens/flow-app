@@ -7,8 +7,7 @@ import {
 } from "reactflow";
 import { drag } from "d3-drag";
 import { select } from "d3-selection";
-
-import styles from "./style.module.css";
+import { RotateHandle, StyledNode } from "./styles";
 
 export default function ResizeRotateNode({
   id,
@@ -42,19 +41,18 @@ export default function ResizeRotateNode({
 
   return (
     <>
-      <div
+      <StyledNode
         style={{
           transform: `rotate(${rotation}deg)`,
         }}
-        className={styles.node}
       >
         <NodeResizer isVisible={resizable} minWidth={180} minHeight={100} />
-        <div
+        <RotateHandle
           ref={rotateControlRef}
           style={{
             display: rotatable ? "block" : "none",
           }}
-          className={`nodrag ${styles.rotateHandle}`}
+          // className={`nodrag ${styles.rotateHandle}`}
         />
         <div>
           {data?.label}
@@ -89,7 +87,7 @@ export default function ResizeRotateNode({
           position={targetPosition}
           type="target"
         />
-      </div>
+      </StyledNode>
     </>
   );
 }

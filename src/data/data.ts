@@ -21,7 +21,7 @@ export const BriffOrganization: Organization = {
   teams: [BriffTeam],
 };
 
-export const teamOrganization: Node[] = [
+export const teamNodes: Node[] = [
   {
     id: "asset-1-type-1",
     type: "asset",

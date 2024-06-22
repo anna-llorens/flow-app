@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { App } from "./App";
+import App from "./App";
 import { ErrorPage } from "./pages/error-page";
 
-import { EditFlowPage } from "./components/flow/edit-flow/edit-flow";
+import { EditFlowPage } from "./pages/edit-flow-page";
 import { OrgPage } from "./pages/teams/org-page";
 import { MembersPage } from "./pages/teams/members-page";
+import { team1Edges, teamNodes } from "./data/data";
 
 // TODO - App routes
 
@@ -34,7 +35,9 @@ export const router = createBrowserRouter([
       },
       {
         path: "/teams/edit",
-        element: <EditFlowPage />,
+        element: (
+          <EditFlowPage initialNodes={teamNodes} initialEdges={team1Edges} />
+        ),
       },
       {
         path: "predictions",

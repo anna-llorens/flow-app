@@ -1,7 +1,8 @@
-import ReactFlow, { Background, Position } from "reactflow";
+import { Position } from "reactflow";
 
 import "reactflow/dist/style.css";
 import ResizeRotateNode from "../../components/flow/nodes/resize-and-rotate";
+import { Flow } from "../../components/flow";
 
 const nodeTypes = {
   resizeRotate: ResizeRotateNode,
@@ -43,14 +44,13 @@ export const MembersPage = () => {
     <div>
       <p>Members Page</p>
 
-      <ReactFlow
+      <Flow
         nodeTypes={nodeTypes}
-        defaultNodes={nodes}
-        defaultEdges={edges}
-        fitView
-      >
-        <Background />
-      </ReactFlow>
+        initialNodes={nodes}
+        initialEdges={edges}
+        height="600px"
+        withBorder
+      ></Flow>
     </div>
   );
 };

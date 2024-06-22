@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import { TeamFlow } from "../../components/flow/team-flow";
+
 import styled from "styled-components";
+import { Flow } from "../../components/flow";
+import { team1Edges, teamNodes } from "../../data/data";
 
 const WIDTH = "600px";
 const HEIGHT = "300px";
@@ -16,7 +18,13 @@ export const OrgPage = () => {
       <ActionsMenu>
         <Link to="/teams/edit">Edit</Link>
       </ActionsMenu>
-      <TeamFlow width={WIDTH} height={HEIGHT} withBorder />
+      <Flow
+        width={WIDTH}
+        height={HEIGHT}
+        withBorder
+        initialNodes={teamNodes}
+        initialEdges={team1Edges}
+      />
     </div>
   );
 };

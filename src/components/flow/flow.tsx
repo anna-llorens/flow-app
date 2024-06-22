@@ -19,14 +19,14 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import { Label, InputText, Resize } from "./nodes/nodes";
 
-// Define node types
+// Define the node types
 const nodeTypesDefault: NodeTypes = {
   label: Label,
   editable: InputText,
   resize: Resize,
 };
 
-// ℹ️ See pricing before enabling this option in prod 
+// ℹ️ See pricing before enabling this option in prod
 const proOptions = { hideAttribution: true };
 
 type FlowProps = {
@@ -53,7 +53,7 @@ export const Flow: React.FC<FlowProps> = ({
   className,
   draggable = true,
   defaultEdgeOptions,
-  fitView,
+  fitView = true,
   fitViewOptions,
   height = 300,
   initialEdges,
@@ -112,7 +112,7 @@ export const Flow: React.FC<FlowProps> = ({
       >
         {showControls && <Controls showInteractive />}
         {showMiniMap && <MiniMap />}
-        {background && <Background variant={background} gap={12} size={1} />}
+        {background && <Background variant={background} gap={10} size={4} />}
       </ReactFlow>
     </div>
   );
