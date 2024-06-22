@@ -1,8 +1,23 @@
 import "reactflow/dist/style.css";
 import { TabsComponent } from "../../components/tabs";
+import { Link } from "@mui/material";
+import styled from "styled-components";
+import { Routes } from "../../Routes";
+import { team1Edges, teamOrganization } from "../../data/data";
 import { Flow } from "../../components/flow";
-import { team1Nodes, team1Edges } from "../../data/data";
 
+const LinksWrapper = styled.section`
+  display: flex;
+  gap: 16px;
+`;
+
+const StyledText = styled.span`
+  color: #1976d2;
+`;
+
+const FlowWrapper = styled.div`
+  margin-top: 16px;
+`;
 export const TeamsPage = () => {
   const onNewTeamClick = () =>
     console.info("🚧 Add modal to fill with basic data for a new team");
@@ -21,18 +36,21 @@ export const TeamsPage = () => {
             label: "Team 1",
             children: (
               <>
-                <TabsComponent
-                  tabs={[
-                    {
-                      label: "Members",
-                    },
-                  ]}
-                />
-                <Flow
-                  initialNodes={team1Nodes}
-                  initialEdges={team1Edges}
-                  fitView
-                />
+                <LinksWrapper>
+                  <Link href={Routes.teamOrg}>Org</Link>
+                  <StyledText> / </StyledText>
+                  <Link href={Routes.teamMembers}>Members</Link>
+                </LinksWrapper>
+                {/* ADD React Router, several tabs */}
+                <FlowWrapper>
+                  <Flow
+                    initialNodes={teamOrganization}
+                    initialEdges={team1Edges}
+                    type="team"
+                    fitView
+                    zoom={false}
+                  />
+                </FlowWrapper>
               </>
             ),
           },
