@@ -34,13 +34,13 @@ type FlowProps = {
   draggable?: boolean;
   fitView?: boolean;
   fitViewOptions?: FitViewOptions;
-  height?: number;
+  height?: string;
   initialNodes: Node[];
   initialEdges: Edge[];
   nodeTypes?: NodeTypes;
   showControls?: boolean;
   showMiniMap?: boolean;
-  width?: number;
+  width?: string;
   zoom?: boolean;
 };
 
@@ -96,7 +96,7 @@ export const Flow: React.FC<FlowProps> = ({
         nodesDraggable={draggable}
         style={{ border: "1px solid #ddd" }}
       >
-        {showControls && <Controls />}
+        {showControls && <Controls showInteractive />}
         {showMiniMap && <MiniMap />}
         {background && <Background variant={background} gap={12} size={1} />}
       </ReactFlow>

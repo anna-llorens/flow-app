@@ -1,4 +1,4 @@
-import { TeamsPage } from "./pages/teams-page";
+import { TeamsPage } from "./pages/teams/teams-page";
 
 export const App = () => {
   return (

@@ -1,34 +1,39 @@
-import styled from "styled-components";
+import { BackgroundVariant } from "reactflow";
 import { Flow } from ".";
 import { team1Edges, teamOrganization } from "../../data/data";
-import { Button } from "../button";
-import { Link as RouterLink } from "react-router-dom";
+import React from "react";
 
-const FlowWrapper = styled.div`
-  margin-top: 16px;
-  height: 316px;
-  width: 800px;
-`;
-
-const defaultFlowProps = {
-  fitView: true,
-  zoom: false,
-  draggable: false,
+type TeamFlowProps = {
+  width?: string;
+  height?: string;
+  zoom?: boolean;
+  draggable?: boolean;
+  showControls?: boolean;
+  showMiniMap?: boolean;
+  background?: BackgroundVariant;
 };
 
-export const TeamFlow = () => {
+export const TeamFlow: React.FC<TeamFlowProps> = ({
+  width,
+  height,
+  zoom,
+  draggable,
+  showControls,
+  showMiniMap,
+  background,
+}) => {
   return (
-    <FlowWrapper>
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <Button>
-          <RouterLink to="/teams/edit">Edit</RouterLink>
-        </Button>
-      </div>
-      <Flow
-        initialNodes={teamOrganization}
-        initialEdges={team1Edges}
-        {...defaultFlowProps}
-      />
-    </FlowWrapper>
+    <Flow
+      initialNodes={teamOrganization}
+      initialEdges={team1Edges}
+      width={width}
+      height={height}
+      zoom={zoom}
+      fitView={true}
+      draggable={draggable}
+      showControls={showControls}
+      showMiniMap={showMiniMap}
+      background={background}
+    />
   );
 };

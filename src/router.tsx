@@ -4,8 +4,8 @@ import { App } from "./App";
 import { ErrorPage } from "./pages/error-page";
 import { MembersPage } from "./pages/members";
 
-import { TeamFlow } from "./components/flow/team-flow";
-import { EditFlowPage } from "./components/flow/edit-flow";
+import { EditFlowPage } from "./components/flow/edit-flow/edit-flow";
+import { OrgPage } from "./pages/teams/org-page";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -21,8 +21,8 @@ export const router = createBrowserRouter([
         element: <MembersPage />,
       },
       {
-        path: "teams/org",
-        element: <TeamFlow />,
+        path: "/teams/org",
+        element: <OrgPage />,
       },
       {
         path: "/teams/favorites",

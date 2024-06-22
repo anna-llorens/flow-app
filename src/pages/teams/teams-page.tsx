@@ -4,8 +4,8 @@ import { Link } from "@mui/material";
 import styled from "styled-components";
 
 import { Outlet } from "react-router-dom";
-import { Routes } from "../routes";
-import { TabsComponent } from "../components/tabs";
+import { Routes } from "../../routes";
+import { TabsComponent } from "../../components/tabs";
 
 const LinksWrapper = styled.section`
   display: flex;
