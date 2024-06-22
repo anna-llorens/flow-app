@@ -17,13 +17,14 @@ import ReactFlow, {
   MiniMap,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { Label, InputText } from "./flow-nodes";
+import { Label, InputText, Resize } from "./flow-nodes";
 
 // Define node types
 const nodeTypesDefault: NodeTypes = {
   // TODO add more types
   label: Label,
   editable: InputText,
+  resize: Resize,
 };
 
 const proOptions = { hideAttribution: true };

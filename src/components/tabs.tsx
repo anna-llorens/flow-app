@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { Edge, Node } from "reactflow";
 import { useState } from "react";
 import Tab from "@mui/material/Tab";
+import { useLocation } from "react-router-dom";
 
 type TabPanelProps = {
   children?: React.ReactNode;
@@ -90,6 +91,9 @@ export const TabsComponent: React.FC<Props> = ({ tabs, children }) => {
   const handleChange = (_event: React.SyntheticEvent, teamTab: number) =>
     setActiveTeam(teamTab);
 
+  const location = useLocation();
+  console.log("location", location);
+
   return (
     <>
       <Box sx={{ width: "100%" }}>
@@ -112,10 +116,12 @@ export const TabsComponent: React.FC<Props> = ({ tabs, children }) => {
         {tabs.map((tab, index) => (
           <TabPanel key={index} value={activeTeam} index={index}>
             {tab?.children}
+            {/* <Outlet /> ??*/}
           </TabPanel>
         ))}
       </Box>
       {children}
+      {/* <Outlet />?? */}
     </>
   );
 };
