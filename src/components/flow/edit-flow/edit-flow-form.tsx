@@ -1,8 +1,9 @@
 import { Button } from "../../button";
 import { useState } from "react";
 import styled from "styled-components";
-import { LabelField } from "../../label-field";
+import { InputField } from "../../inputs/input-field";
 import { AssetType } from "../../../types";
+import { TextArea } from "../../inputs/text-area";
 
 const ActionsContainer = styled.div`
   display: flex;
@@ -33,9 +34,14 @@ export const EditFlowForm = ({ data }: { data: AssetType }) => {
           Save
         </Button>
       </ActionsContainer>
-      <LabelField label="Asset name" value={name} onChange={onNameChange} />
-      <LabelField label="Asset type" value={data.label} disabled />
-      <LabelField label="Description" value={data.description} />
+      <InputField label="Asset name" value={name} onChange={onNameChange} />
+      <InputField
+        label="Asset type"
+        value={data.label}
+        placeholder="Asset Type"
+        disabled
+      />
+      <TextArea value={data.label} label="Description" rows={5} cols={50} />
     </form>
   );
 };
