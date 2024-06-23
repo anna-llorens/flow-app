@@ -18,9 +18,11 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { Label, InputText, Resize } from "./nodes/nodes";
+import { Asset } from "../nodes/asset";
 
 // Define the node types
 const nodeTypesDefault: NodeTypes = {
+  asset: Asset,
   label: Label,
   editable: InputText,
   resize: Resize,

@@ -33,8 +33,10 @@ export const teamNodes: Node[] = [
       height: 130,
     },
     data: {
-      label: "Asset - Type 1 Details",
-      name: "Asset Name",
+      label: "Asset",
+      name: "Asset #1",
+      description: "Asset Description",
+      type: "Asset Type",
     },
   },
   {

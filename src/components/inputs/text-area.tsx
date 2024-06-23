@@ -13,8 +13,8 @@ export const TextArea: React.FC<TextAreaProps> = ({
   placeholder,
   className,
   style,
-  rows,
-  cols,
+  rows =5,
+  cols = 50,
 }) => {
   return (
     <InputContainer>

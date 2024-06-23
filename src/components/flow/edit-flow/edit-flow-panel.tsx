@@ -16,13 +16,15 @@ const nodeData: Node<AssetType> = {
   },
   data: {
     label: "Asset - Type 1 Details",
-    name: "Asset Name",
+    name: "Asset #3",
+    description: "Asset Description",
+    type: "Type #1",
   },
 };
 
-export const EditFlowPanel = () => {
+export const EditFlowPanel = (dataFields = nodeData) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [data, setNode] = useState<AssetType>(nodeData.data);
+  const [data, setNode] = useState<AssetType>(dataFields.data);
 
   return (
     <EditFlowContainer>

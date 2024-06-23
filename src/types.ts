@@ -64,6 +64,7 @@ export type AssetType = {
   label: string;
   name: string;
   description?: string;
+  type: string;
   mission?: string;
   id?: string;
 };

@@ -12,16 +12,25 @@ const ActionsContainer = styled.div`
 `;
 
 export const EditFlowForm = ({ data }: { data: AssetType }) => {
-  const [name, setName] = useState(data.name);
+  const [name, setName] = useState(data?.name);
+  const [description, setDescription] = useState(data?.description);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.info(`Name submitvale: ${name}`);
+    console.info(`Name submit value --> ${name}`);
+    console.info(`Description submit value --> ${description}`);
   };
 
-  const onNameChange = (e) => {
-    console.info(`Name vale: ${e.target.value}`);
-    setName(e.target.value);
+  const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.info(`Name value: ${event.target.value}`);
+    setName(event.target.value);
+  };
+
+  const onDescriptionChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    console.info(`Description value: ${event.target.value}`);
+    setDescription(event.target.value);
   };
 
   return (
@@ -34,14 +43,19 @@ export const EditFlowForm = ({ data }: { data: AssetType }) => {
           Save
         </Button>
       </ActionsContainer>
-      <InputField label="Asset name" value={name} onChange={onNameChange} />
+      <InputField label="Asset" value={name} onChange={onNameChange} />
       <InputField
-        label="Asset type"
-        value={data.label}
+        name="Asset Type"
+        label="Asset Type"
+        value={data?.type}
         placeholder="Asset Type"
         disabled
       />
-      <TextArea value={data.label} label="Description" rows={5} cols={50} />
+      <TextArea
+        value={description}
+        label="Description"
+        onChange={onDescriptionChange}
+      />
     </form>
   );
 };
