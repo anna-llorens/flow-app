@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Node, Position } from "reactflow";
 import { EditFlowForm } from "./edit-flow-form";
-import { EditFlowContainer, LabelText } from "./styles";
+import { EditFlowContainer } from "./styles";
+import { AssetType } from "../../../types";
 
-const nodeData: Node = {
+const nodeData: Node<AssetType> = {
   id: "asset-1-type-1",
   type: "asset",
   position: { x: 20, y: 77.6997 },
@@ -21,16 +22,14 @@ const nodeData: Node = {
 
 export const EditFlowPanel = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [node, setNode] = useState<Node>(nodeData);
+  const [data, setNode] = useState<AssetType>(nodeData.data);
 
   return (
     <EditFlowContainer>
       <div>
         <p>Edit Flow Control</p>
       </div>
-      <EditFlowForm data={node.data.name} />
-      <LabelText>Asset type:</LabelText>
-      <div>{node.data.label}</div>
+      <EditFlowForm data={data} />
     </EditFlowContainer>
   );
 };

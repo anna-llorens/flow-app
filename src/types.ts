@@ -1,6 +1,3 @@
-import { CSSProperties } from "react";
-import { XYPosition, Position } from "reactflow";
-
 export type AgentRole =
   | "foreman"
   | "firefighter"
@@ -62,29 +59,19 @@ export type Asset = {
   incidents: Incident[];
 };
 
-
-// Nodes 
-export type DataType1 = {
-  data: string;
+// Data types for nodes
+export type AssetType = {
+  label: string;
   name: string;
+  description?: string;
+  mission?: string;
+  id?: string;
 };
-export type DataType2 = {
-  data: string;
+export type NodeType2 = {
+  label: string;
   timeStamp: string;
 };
-export type DataType3 = {
-  data: string;
+export type NodeType3 = {
+  label: string;
   url: string;
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Node<T = any, U extends string = string> = {
-  id: string;
-  position: XYPosition;
-  data: T;
-  type?: U;
-  style?: CSSProperties;
-  className?: string;
-  sourcePosition: Position;
-  targetPosition: Position;
 };

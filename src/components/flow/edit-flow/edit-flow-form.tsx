@@ -1,7 +1,8 @@
 import { Button } from "../../button";
 import { useState } from "react";
-import { LabelText } from "./styles";
 import styled from "styled-components";
+import { LabelField } from "../../label-field";
+import { AssetType } from "../../../types";
 
 const ActionsContainer = styled.div`
   display: flex;
@@ -9,12 +10,17 @@ const ActionsContainer = styled.div`
   justify-content: end;
 `;
 
-export const EditFlowForm = ({ data }: { data: string }) => {
-  const [name, setName] = useState(data);
+export const EditFlowForm = ({ data }: { data: AssetType }) => {
+  const [name, setName] = useState(data.name);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.info(`The name you entered was: ${name}`);
+    console.info(`Name submitvale: ${name}`);
+  };
+
+  const onNameChange = (e) => {
+    console.info(`Name vale: ${e.target.value}`);
+    setName(e.target.value);
   };
 
   return (
@@ -27,16 +33,9 @@ export const EditFlowForm = ({ data }: { data: string }) => {
           Save
         </Button>
       </ActionsContainer>
-
-      <label>
-        <LabelText>Asset name:</LabelText>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          style={{ width: "100%" }}
-        />
-      </label>
+      <LabelField label="Asset name" value={name} onChange={onNameChange} />
+      <LabelField label="Asset type" value={data.label} disabled />
+      <LabelField label="Description" value={data.description} />
     </form>
   );
 };
