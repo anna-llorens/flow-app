@@ -13,13 +13,12 @@ const ActionsContainer = styled.div`
   justify-content: end;
 `;
 
-// Custom node team and and asset_2
+// TODO Custom node team and and asset_2
 
 export const EditFlowForm = () => {
-
-// Implement Generic form for editing nodes
-// Implement the ability to discard changes
-// Implement the ability to save changes
+  // Implement Generic form for editing nodes
+  // Implement the ability to discard changes
+  // Implement the ability to save changes
 
   const { selectedNode, updateSelectedNode } = useAppContext();
 
@@ -36,10 +35,6 @@ export const EditFlowForm = () => {
       prevDescriptionRef.current = selectedNode.data?.description;
     }
   }, [selectedNode]);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
 
   const onDiscardClick = () => {
     setName(prevNameRef.current);
@@ -65,23 +60,20 @@ export const EditFlowForm = () => {
 
   return (
     <EditFlowContainer>
-      <form onSubmit={handleSubmit}>
-        <h5>Edit Team</h5>
-        <ActionsContainer>
-          <Button variant="destroy" onClick={onDiscardClick}>
-            Discard Changes
-          </Button>
-          <Button variant="contained" onClick={onSaveClick}>
-            Save
-          </Button>
-        </ActionsContainer>
-        <InputField label="Asset" value={name} onChange={onNameChange} />
-        <TextArea
-          value={description}
-          label="Description"
-          onChange={onDescriptionChange}
-        />
-      </form>
+      <ActionsContainer>
+        <Button variant="destroy" onClick={onDiscardClick}>
+          Discard Changes
+        </Button>
+        <Button variant="contained" onClick={onSaveClick}>
+          Save
+        </Button>
+      </ActionsContainer>
+      <InputField label="Asset" value={name} onChange={onNameChange} />
+      <TextArea
+        value={description}
+        label="Description"
+        onChange={onDescriptionChange}
+      />
     </EditFlowContainer>
   );
 };

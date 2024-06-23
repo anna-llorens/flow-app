@@ -1,3 +1,5 @@
+import { Node } from "reactflow";
+
 export type AgentRole =
   | "foreman"
   | "firefighter"
@@ -33,17 +35,6 @@ export type Agent = {
   roles: AgentRole;
 } & User;
 
-export type Incident = {
-  active: boolean;
-  id: string;
-  name: string;
-  description: string;
-  location: string;
-  date: string;
-  time: string;
-  tags: string[];
-};
-
 export type Asset = {
   type: string;
   name: string;
@@ -56,7 +47,6 @@ export type Asset = {
   date?: string;
   time?: string;
   tags?: string[];
-  incidents?: Incident[];
 };
 
 // Data types for nodes
@@ -67,4 +57,14 @@ export type NodeType2 = {
 export type NodeType3 = {
   label: string;
   url: string;
+};
+
+export type AppData = {
+  teams: Team[];
+};
+
+export type AppContextType = {
+  data: AppData;
+  selectedNode?: Node;
+  updateSelectedNode?: (node: Node) => void;
 };

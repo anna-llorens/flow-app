@@ -1,38 +1,9 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { Node } from "reactflow";
-import { Team } from "./types";
+import { AppContextType, AppData } from "./types";
 import { Asset } from "./components/nodes/asset";
+import { defaultContextData } from "./data/data";
 
-type AppData = {
-  teams: Team[];
-};
-
-type AppContextType = {
-  data: AppData;
-  selectedNode?: Node;
-  updateSelectedNode?: (node: Node) => void;
-};
-
-const defaultContextData: AppContextType = {
-  data: {
-    teams: [
-      {
-        id: "team-1",
-        name: "Team 1",
-        members: [],
-        organizationId: "org-1",
-        assets: [
-          {
-            name: "Asset #1",
-            description: "This is asset #1",
-            type: "Asset",
-            id: "asset-1-type-1",
-          },
-        ],
-      },
-    ],
-  },
-};
 
 const AppContext = createContext<AppContextType | null>(null);
 
@@ -44,9 +15,11 @@ const AppProvider = ({ children }) => {
     const storedData = localStorage.getItem("appData");
     if (storedData) {
       setData(JSON.parse(storedData));
+      console.log(" Getting data from local storage");
     } else {
       setData(defaultContextData.data);
-      localStorage.setItem("appData", JSON.stringify(defaultContextData.data));
+      console.log(" Getting data from default data");
+      localStorage.setItem("appData", JSON.stringify(defaultContextData));
     }
   }, []);
 
@@ -55,7 +28,7 @@ const AppProvider = ({ children }) => {
     // Update the node in the data
     console.log("🚧 Update selected node", node);
     console.log("🚧 Update selected node", node.data.name);
-    
+    console.log("🚧 Update selected node", data);
   };
 
   const getSelectedNode = () => {
