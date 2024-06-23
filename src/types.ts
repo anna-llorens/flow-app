@@ -20,6 +20,7 @@ export type Team = {
   members: Agent[];
   organizationId: string;
   imageUrl?: string;
+  assets?: Asset[];
 };
 
 export type Organization = {
@@ -44,30 +45,21 @@ export type Incident = {
 };
 
 export type Asset = {
-  id: string;
+  type: string;
   name: string;
   description: string;
-  value: number;
+  id?: string;
   owner?: Organization;
-  team: string;
-  status: string;
-  type: string;
-  location: string;
-  date: string;
-  time: string;
-  tags: string[];
-  incidents: Incident[];
+  team?: string;
+  status?: string;
+  location?: string;
+  date?: string;
+  time?: string;
+  tags?: string[];
+  incidents?: Incident[];
 };
 
 // Data types for nodes
-export type AssetType = {
-  label: string;
-  name: string;
-  description?: string;
-  type: string;
-  mission?: string;
-  id?: string;
-};
 export type NodeType2 = {
   label: string;
   timeStamp: string;

@@ -1,9 +1,11 @@
 import { Button } from "../../button";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { InputField } from "../../inputs/input-field";
-import { AssetType } from "../../../types";
+
 import { TextArea } from "../../inputs/text-area";
+import { useAppContext } from "../../../app-context";
+import { EditFlowContainer } from "./styles";
 
 const ActionsContainer = styled.div`
   display: flex;
@@ -11,51 +13,75 @@ const ActionsContainer = styled.div`
   justify-content: end;
 `;
 
-export const EditFlowForm = ({ data }: { data: AssetType }) => {
-  const [name, setName] = useState(data?.name);
-  const [description, setDescription] = useState(data?.description);
+// Custom node team and and asset_2
+
+export const EditFlowForm = () => {
+
+// Implement Generic form for editing nodes
+// Implement the ability to discard changes
+// Implement the ability to save changes
+
+  const { selectedNode, updateSelectedNode } = useAppContext();
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const prevNameRef = useRef("");
+  const prevDescriptionRef = useRef("");
+
+  useEffect(() => {
+    if (selectedNode) {
+      setName(selectedNode.data?.name);
+      setDescription(selectedNode.data?.description);
+      prevNameRef.current = selectedNode.data?.name;
+      prevDescriptionRef.current = selectedNode.data?.description;
+    }
+  }, [selectedNode]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.info(`Name submit value --> ${name}`);
-    console.info(`Description submit value --> ${description}`);
+  };
+
+  const onDiscardClick = () => {
+    setName(prevNameRef.current);
+    setDescription(prevDescriptionRef.current);
+    // TODO: Add a confirmation dialog
+    // TODO : Disable discard button if no changes
+  };
+  const onSaveClick = () => {
+    prevNameRef.current = name;
+    prevDescriptionRef.current = description;
+    updateSelectedNode({ ...selectedNode, data: { name, description } });
   };
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.info(`Name value: ${event.target.value}`);
     setName(event.target.value);
   };
 
   const onDescriptionChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    console.info(`Description value: ${event.target.value}`);
     setDescription(event.target.value);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ActionsContainer>
-        <Button type="submit" variant="destroy">
-          Discard Changes
-        </Button>
-        <Button type="submit" variant="contained">
-          Save
-        </Button>
-      </ActionsContainer>
-      <InputField label="Asset" value={name} onChange={onNameChange} />
-      <InputField
-        name="Asset Type"
-        label="Asset Type"
-        value={data?.type}
-        placeholder="Asset Type"
-        disabled
-      />
-      <TextArea
-        value={description}
-        label="Description"
-        onChange={onDescriptionChange}
-      />
-    </form>
+    <EditFlowContainer>
+      <form onSubmit={handleSubmit}>
+        <h5>Edit Team</h5>
+        <ActionsContainer>
+          <Button variant="destroy" onClick={onDiscardClick}>
+            Discard Changes
+          </Button>
+          <Button variant="contained" onClick={onSaveClick}>
+            Save
+          </Button>
+        </ActionsContainer>
+        <InputField label="Asset" value={name} onChange={onNameChange} />
+        <TextArea
+          value={description}
+          label="Description"
+          onChange={onDescriptionChange}
+        />
+      </form>
+    </EditFlowContainer>
   );
 };

@@ -7,7 +7,4 @@ export enum Routes {
   teamOrg = "/teams/org",
   teamMembers = "/teams/members",
   teamsAssets = "/teams/assets",
-  teamsAssetDetail = "/teams/assets/detail",
-  teamsAssetDetailEdit = "/teams/assets/detail/edit",
-  teamsAssetDetailEditFlow = "/teams/assets/detail/edit/flow",
 }

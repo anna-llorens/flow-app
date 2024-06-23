@@ -3,7 +3,7 @@ import { StyledSelectorPanel } from "./styles";
 export const SelectorPanel = () => {
   return (
     <StyledSelectorPanel>
-      <p>Selector Panel</p>
+      <h5>Element Selector</h5>
     </StyledSelectorPanel>
   );
 };

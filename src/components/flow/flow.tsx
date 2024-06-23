@@ -31,7 +31,7 @@ const nodeTypesDefault: NodeTypes = {
 // ℹ️ See pricing before enabling this option in prod
 const proOptions = { hideAttribution: true };
 
-type FlowProps = {
+export type FlowProps = {
   background?: BackgroundVariant;
   className?: string;
   defaultEdgeOptions?: DefaultEdgeOptions;
@@ -42,6 +42,7 @@ type FlowProps = {
   initialNodes: Node[];
   initialEdges: Edge[];
   nodeTypes?: NodeTypes;
+  onNodeClick?: (event: React.MouseEvent, node: Node) => void;
   showControls?: boolean;
   showMiniMap?: boolean;
   style?: React.CSSProperties;
@@ -61,6 +62,7 @@ export const Flow: React.FC<FlowProps> = ({
   initialEdges,
   initialNodes,
   nodeTypes = nodeTypesDefault,
+  onNodeClick,
   showControls,
   showMiniMap,
   style,
@@ -104,6 +106,7 @@ export const Flow: React.FC<FlowProps> = ({
         nodeTypes={nodeTypes}
         onConnect={onConnect}
         onEdgesChange={onEdgesChange}
+        onNodeClick={onNodeClick}
         panOnDrag={draggable}
         onNodesChange={onNodesChange}
         proOptions={proOptions}
