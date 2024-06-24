@@ -1,62 +1,26 @@
-import { Node } from "reactflow";
-
-export type AgentRole =
-  | "foreman"
-  | "firefighter"
-  | "paramedic"
-  | "police"
-  | "rescuer"
-  | "volunteer"
-  | "other";
+import { Edge, Node } from "reactflow";
 
 export type User = {
   id: string;
   name: string;
-  email: string;
   admin?: boolean;
+  role: string;
 };
 
 export type Team = {
   id: string;
   name: string;
-  members: Agent[];
-  organizationId: string;
-  imageUrl?: string;
-  assets?: Asset[];
+  members: User[];
+  nodes?: Node[];
+  edges?: Edge[];
 };
-
-export type Organization = {
-  id: string;
-  name: string;
-  teams: Team[];
-};
-
-export type Agent = {
-  roles: AgentRole;
-} & User;
 
 export type Asset = {
   type: string;
   name: string;
   description: string;
   id?: string;
-  owner?: Organization;
-  team?: string;
-  status?: string;
-  location?: string;
-  date?: string;
-  time?: string;
-  tags?: string[];
-};
-
-// Data types for nodes
-export type NodeType2 = {
-  label: string;
-  timeStamp: string;
-};
-export type NodeType3 = {
-  label: string;
-  url: string;
+  teamId?: string;
 };
 
 export type AppData = {

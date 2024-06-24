@@ -27,7 +27,7 @@ export const EditFlowPage: React.FC<EditFlowPageProps> = ({
   initialEdges,
   initialNodes,
 }) => {
-  const { updateSelectedNode } = useAppContext();
+  const { updateSelectedNode, } = useAppContext();
 
   const onNodeClick = (_event: React.MouseEvent, node: Node) =>
     updateSelectedNode(node);

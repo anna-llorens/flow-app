@@ -1,24 +1,16 @@
 import { Edge, Node, Position } from "reactflow";
-import { Agent, AppContextType, Organization, Team } from "../types";
+import { AppContextType, Team, User } from "../types";
 
-const agent: Agent = {
+const agent: User = {
   id: "agent-1",
   name: "John Doe",
-  email: "",
-  roles: "foreman",
+  role: "foreman",
 };
 
 export const BriffTeam: Team = {
   id: "",
   name: "",
   members: [agent],
-  organizationId: "org-1",
-};
-
-export const BriffOrganization: Organization = {
-  id: "org-1",
-  name: "Briff",
-  teams: [BriffTeam],
 };
 
 export const teamNodes: Node[] = [
@@ -112,15 +104,7 @@ export const defaultContextData: AppContextType = {
         id: "team-1",
         name: "Team 1",
         members: [],
-        organizationId: "org-1",
-        assets: [
-          {
-            name: "hello world",
-            description: "This is asset #1",
-            type: "Asset",
-            id: "asset-1-type-1",
-          },
-        ],
+        nodes: teamNodes,
       },
     ],
   },

@@ -4,7 +4,6 @@ import { AppContextType, AppData } from "./types";
 import { Asset } from "./components/nodes/asset";
 import { defaultContextData } from "./data/data";
 
-
 const AppContext = createContext<AppContextType | null>(null);
 
 const AppProvider = ({ children }) => {
@@ -14,26 +13,37 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     const storedData = localStorage.getItem("appData");
     if (storedData) {
-      setData(JSON.parse(storedData));
       console.log(" Getting data from local storage");
+      setData(JSON.parse(storedData));
     } else {
       setData(defaultContextData.data);
       console.log(" Getting data from default data");
-      localStorage.setItem("appData", JSON.stringify(defaultContextData));
+      localStorage.setItem("appData", JSON.stringify(defaultContextData.data));
     }
   }, []);
 
+  const updateNodeInTeam = (nodeToUpdate: Node) => {
+    setData((currentData) => {
+      return {
+        ...currentData,
+        teams: currentData.teams.map((team) => ({
+          ...team,
+          nodes: team.nodes.map((node) =>
+            node.id === nodeToUpdate.id ? { ...node, ...nodeToUpdate } : node
+          ),
+        })),
+      };
+    });
+    localStorage.setItem("appData", JSON.stringify(data));
+  };
+
   const updateSelectedNode = (node: Node<typeof Asset>) => {
     setSelectedNode(node);
-    // Update the node in the data
-    console.log("🚧 Update selected node", node);
-    console.log("🚧 Update selected node", node.data.name);
-    console.log("🚧 Update selected node", data);
+    updateNodeInTeam(node);
   };
 
   const getSelectedNode = () => {
     if (!data || !selectedNode) return null;
-
     return selectedNode;
   };
 
