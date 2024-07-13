@@ -1,9 +1,6 @@
 # Next
 
 1. Update App context
-- Update node to data and data to localStorage
-- useEffect from selected item to context?
-- Update data types from Node on node
 
 2. Nodes
 - Custom node for team 

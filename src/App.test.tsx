@@ -1,16 +1,13 @@
 import { render } from "@testing-library/react";
 import App from "./App";
-import { mockReactFlow } from "../__mocks__/mockReactFlow";
+import { mockReactFlow } from "./tests/__mocks__/mockReactFlow";
 
-
-describe('App', () => {
-
+describe("App", () => {
   beforeAll(() => {
     mockReactFlow();
   });
 
-  test('renders App component without crashing', () => {
+  test("Renders App component without crashing", () => {
     render(<App />);
   });
-
 });

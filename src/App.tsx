@@ -1,10 +1,11 @@
-import { AppProvider } from "./app-context";
 import { TeamsPage } from "./pages/teams/teams-page";
+import Anna from "./assets/anna.png";
 
 export default function App() {
   return (
-    <AppProvider>
+    <>
       <TeamsPage />
-    </AppProvider>
+      <img src={Anna} />
+    </>
   );
 }

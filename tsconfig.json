@@ -21,6 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "__mocks__/mockReactFlow.tsx"],
+  "include": ["src", "/src/tests/__mocks__/mockReactFlow.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
