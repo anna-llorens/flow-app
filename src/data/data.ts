@@ -1,5 +1,5 @@
 import { Edge, Node, Position } from "reactflow";
-import { AppContextType, Team, User } from "../types";
+import { AppData, Team, User } from "../types";
 
 const agent: User = {
   id: "agent-1",
@@ -29,6 +29,7 @@ export const teamNodes: Node[] = [
       name: "Asset #1",
       description: "Asset Description",
       type: "Asset Type",
+      teamId: "team-1",
     },
   },
   {
@@ -97,15 +98,13 @@ export const team1Edges: Edge[] = [
   { id: "team-agent", source: "team-id", target: "agent" },
 ];
 
-export const defaultContextData: AppContextType = {
-  data: {
-    teams: [
-      {
-        id: "team-1",
-        name: "Team 1",
-        members: [],
-        nodes: teamNodes,
-      },
-    ],
-  },
+export const defaultContextData: AppData = {
+  teams: [
+    {
+      id: "team-1",
+      name: "Team 1",
+      members: [],
+      nodes: teamNodes,
+    },
+  ],
 };

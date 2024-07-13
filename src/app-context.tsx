@@ -22,24 +22,39 @@ const AppProvider = ({ children }) => {
     }
   }, []);
 
-  const updateNodeInTeam = (nodeToUpdate: Node) => {
-    setData((currentData) => {
-      return {
-        ...currentData,
-        teams: currentData.teams.map((team) => ({
-          ...team,
-          nodes: team.nodes.map((node) =>
-            node.id === nodeToUpdate.id ? { ...node, ...nodeToUpdate } : node
-          ),
-        })),
-      };
-    });
-    localStorage.setItem("appData", JSON.stringify(data));
-  };
+  function updateNodeInTeam1(nodeToUpdate: Node, teamId: string) {
+    // Create a new data structure to avoid mutating the original data
+    const newData = {
+      ...data,
+      teams: data.teams.map((team) => {
+        // Check if this is the team to update
+        if (team.id === teamId) {
+          return {
+            ...team,
+            nodes: team.nodes.map((node) => {
+              // Check if this is the node to update
+              if (node.id === nodeToUpdate.id) {
+                // Return the updated node
+                return { ...node, ...nodeToUpdate };
+              }
+              return node; // Return the node as is if it's not the one to update
+            }),
+          };
+        }
+        return team; // Return the team as is if it's not the one to update
+      }),
+    };
+
+    return newData; // Return the new data structure with the updated node
+  }
 
   const updateSelectedNode = (node: Node<typeof Asset>) => {
+    localStorage.removeItem("appData");
     setSelectedNode(node);
-    updateNodeInTeam(node);
+    setData(updateNodeInTeam1(node, "team-1"));
+    const aa = updateNodeInTeam1(node, "team-1");
+    localStorage.setItem("appData", JSON.stringify(aa));
+    console.log(aa, "Updated node in team 1");
   };
 
   const getSelectedNode = () => {

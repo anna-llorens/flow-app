@@ -6,6 +6,7 @@ import { Flow } from "../components/flow";
 import { EditFlowForm } from "../components/flow/edit-flow/edit-flow-form";
 import { FlowProps } from "../components/flow/flow";
 import { useAppContext } from "../app-context";
+import { useEffect, useState } from "react";
 
 type EditFlowPageProps = {
   initialEdges: Edge[];
@@ -23,11 +24,15 @@ const defaultFlowProps: Partial<FlowProps> = {
   zoom: true,
 };
 
-export const EditFlowPage: React.FC<EditFlowPageProps> = ({
-  initialEdges,
-  initialNodes,
-}) => {
-  const { updateSelectedNode, } = useAppContext();
+export const EditFlowPage: React.FC<EditFlowPageProps> = ({ initialEdges }) => {
+  const { updateSelectedNode, data } = useAppContext();
+  const [initialNodes, setNodes] = useState<Node[] | undefined>(
+    data?.teams[0]?.nodes || []
+  );
+  debugger;
+  useEffect(() => {
+    setNodes(data?.teams[0]?.nodes || []);
+  }, [data]);
 
   const onNodeClick = (_event: React.MouseEvent, node: Node) =>
     updateSelectedNode(node);
